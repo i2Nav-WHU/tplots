@@ -1,0 +1,869 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1000</width>
+    <height>778</height>
+   </rect>
+  </property>
+  <property name="font">
+   <font>
+    <pointsize>12</pointsize>
+   </font>
+  </property>
+  <property name="windowTitle">
+   <string>tplots</string>
+  </property>
+  <property name="autoFillBackground">
+   <bool>false</bool>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <property name="font">
+    <font>
+     <pointsize>11</pointsize>
+    </font>
+   </property>
+   <layout class="QGridLayout" name="gridLayout_3">
+    <item row="0" column="0">
+     <widget class="QSplitter" name="splitter_2">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <widget class="QSplitter" name="splitter">
+       <property name="minimumSize">
+        <size>
+         <width>600</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
+       </property>
+       <widget class="QGroupBox" name="groupBox">
+        <property name="minimumSize">
+         <size>
+          <width>400</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="title">
+         <string>数据描述</string>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_2">
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout">
+           <item>
+            <widget class="QLabel" name="label">
+             <property name="text">
+              <string>文件路径</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLineEdit" name="editdatafile"/>
+           </item>
+           <item>
+            <widget class="QPushButton" name="pbimport">
+             <property name="text">
+              <string>导入文件</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_3">
+           <item>
+            <widget class="QLabel" name="label_3">
+             <property name="text">
+              <string>文件格式</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QComboBox" name="cbfileformat">
+             <property name="minimumSize">
+              <size>
+               <width>120</width>
+               <height>0</height>
+              </size>
+             </property>
+             <item>
+              <property name="text">
+               <string>文本</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>二进制 double</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>二进制 float</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>二进制 int</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="label_5">
+             <property name="text">
+              <string>分割字符</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QComboBox" name="cbdelimiter">
+             <property name="minimumSize">
+              <size>
+               <width>120</width>
+               <height>0</height>
+              </size>
+             </property>
+             <item>
+              <property name="text">
+               <string>空格</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>逗号</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>分号</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="label_4">
+             <property name="text">
+              <string>数据列数</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLineEdit" name="editdatacols">
+             <property name="text">
+              <string>7</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QGroupBox" name="groupBox_2">
+        <property name="minimumSize">
+         <size>
+          <width>400</width>
+          <height>320</height>
+         </size>
+        </property>
+        <property name="title">
+         <string>窗口属性</string>
+        </property>
+        <layout class="QGridLayout" name="gridLayout">
+         <item row="0" column="0">
+          <widget class="QTreeWidget" name="treefigure">
+           <column>
+            <property name="text">
+             <string>属性</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>值</string>
+            </property>
+           </column>
+           <item>
+            <property name="text">
+             <string>窗口名称</string>
+            </property>
+            <property name="text">
+             <string>figure</string>
+            </property>
+            <property name="flags">
+             <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>窗口大小</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="flags">
+             <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>横轴数据</string>
+            </property>
+            <property name="text">
+             <string>指定数据列 [0]</string>
+            </property>
+            <item>
+             <property name="text">
+              <string>指定数据列</string>
+             </property>
+             <property name="text">
+              <string>0</string>
+             </property>
+             <property name="flags">
+              <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>计数索引</string>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+             <property name="checkState">
+              <enum>Unchecked</enum>
+             </property>
+            </item>
+           </item>
+           <item>
+            <property name="text">
+             <string>标题</string>
+            </property>
+            <property name="text">
+             <string>title</string>
+            </property>
+            <property name="flags">
+             <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>横轴标签</string>
+            </property>
+            <property name="text">
+             <string>xlabel</string>
+            </property>
+            <property name="flags">
+             <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>纵轴标签</string>
+            </property>
+            <property name="text">
+             <string>ylabel</string>
+            </property>
+            <property name="flags">
+             <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>字体大小</string>
+            </property>
+            <property name="text">
+             <string>20</string>
+            </property>
+            <property name="flags">
+             <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>显示栅格</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="checkState">
+             <enum>Unchecked</enum>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>显示图例</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="checkState">
+             <enum>Unchecked</enum>
+            </property>
+            <item>
+             <property name="text">
+              <string>标记和曲线</string>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+             <property name="checkState">
+              <enum>Checked</enum>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>标记</string>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+             <property name="checkState">
+              <enum>Unchecked</enum>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>图例位置</string>
+             </property>
+            </item>
+           </item>
+           <item>
+            <property name="text">
+             <string>跳过行数</string>
+            </property>
+            <property name="text">
+             <string>0</string>
+            </property>
+            <property name="checkState">
+             <enum>Unchecked</enum>
+            </property>
+            <property name="flags">
+             <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
+            </property>
+           </item>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QGroupBox" name="groupBox_3">
+        <property name="minimumSize">
+         <size>
+          <width>400</width>
+          <height>280</height>
+         </size>
+        </property>
+        <property name="title">
+         <string>绘图属性</string>
+        </property>
+        <layout class="QGridLayout" name="gridLayout_2">
+         <item row="0" column="0">
+          <widget class="QTreeWidget" name="treeplot">
+           <column>
+            <property name="text">
+             <string>属性</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>X</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>Y</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>Z</string>
+            </property>
+           </column>
+           <item>
+            <property name="text">
+             <string>数据列号</string>
+            </property>
+            <property name="text">
+             <string>1</string>
+            </property>
+            <property name="text">
+             <string>2</string>
+            </property>
+            <property name="text">
+             <string>3</string>
+            </property>
+            <property name="flags">
+             <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>图例名称</string>
+            </property>
+            <property name="text">
+             <string>X</string>
+            </property>
+            <property name="text">
+             <string>Y</string>
+            </property>
+            <property name="text">
+             <string>Z</string>
+            </property>
+            <property name="flags">
+             <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>绘制曲线</string>
+            </property>
+            <property name="text">
+             <string>添加</string>
+            </property>
+            <property name="checkState">
+             <enum>Checked</enum>
+            </property>
+            <property name="text">
+             <string>添加</string>
+            </property>
+            <property name="checkState">
+             <enum>Unchecked</enum>
+            </property>
+            <property name="text">
+             <string>添加</string>
+            </property>
+            <property name="checkState">
+             <enum>Unchecked</enum>
+            </property>
+            <item>
+             <property name="text">
+              <string>样式类型</string>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>曲线宽度</string>
+             </property>
+             <property name="text">
+              <string>1.5</string>
+             </property>
+             <property name="text">
+              <string>1.5</string>
+             </property>
+             <property name="text">
+              <string>1.5</string>
+             </property>
+             <property name="flags">
+              <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>曲线颜色</string>
+             </property>
+             <property name="text">
+              <string>自定义</string>
+             </property>
+             <property name="checkState">
+              <enum>Unchecked</enum>
+             </property>
+             <item>
+              <property name="text">
+               <string>自定义</string>
+              </property>
+              <property name="text">
+               <string>y</string>
+              </property>
+              <property name="text">
+               <string>y</string>
+              </property>
+              <property name="text">
+               <string>y</string>
+              </property>
+              <property name="flags">
+               <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
+              </property>
+             </item>
+            </item>
+           </item>
+           <item>
+            <property name="text">
+             <string>特殊标记</string>
+            </property>
+            <property name="text">
+             <string>添加</string>
+            </property>
+            <property name="checkState">
+             <enum>Unchecked</enum>
+            </property>
+            <property name="text">
+             <string>添加</string>
+            </property>
+            <property name="checkState">
+             <enum>Unchecked</enum>
+            </property>
+            <property name="text">
+             <string>添加</string>
+            </property>
+            <property name="checkState">
+             <enum>Unchecked</enum>
+            </property>
+            <item>
+             <property name="text">
+              <string>标记类型</string>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>标记大小</string>
+             </property>
+             <property name="text">
+              <string>6</string>
+             </property>
+             <property name="text">
+              <string>6</string>
+             </property>
+             <property name="text">
+              <string>6</string>
+             </property>
+             <property name="flags">
+              <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>标记颜色</string>
+             </property>
+             <property name="text">
+              <string>自定义</string>
+             </property>
+             <property name="checkState">
+              <enum>Unchecked</enum>
+             </property>
+             <item>
+              <property name="text">
+               <string>自定义</string>
+              </property>
+              <property name="text">
+               <string>b</string>
+              </property>
+              <property name="text">
+               <string>green</string>
+              </property>
+              <property name="text">
+               <string>#0000FF</string>
+              </property>
+              <property name="flags">
+               <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
+              </property>
+             </item>
+            </item>
+           </item>
+           <item>
+            <property name="text">
+             <string>嵌入文本</string>
+            </property>
+            <property name="text">
+             <string>添加</string>
+            </property>
+            <property name="checkState">
+             <enum>Unchecked</enum>
+            </property>
+            <property name="text">
+             <string>添加</string>
+            </property>
+            <property name="checkState">
+             <enum>Unchecked</enum>
+            </property>
+            <property name="text">
+             <string>添加</string>
+            </property>
+            <property name="checkState">
+             <enum>Unchecked</enum>
+            </property>
+            <item>
+             <property name="text">
+              <string>文本内容</string>
+             </property>
+             <property name="text">
+              <string>text</string>
+             </property>
+             <property name="text">
+              <string>$x^2$</string>
+             </property>
+             <property name="text">
+              <string>text [$\sigma$]</string>
+             </property>
+             <property name="flags">
+              <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>显示坐标</string>
+             </property>
+             <property name="text">
+              <string>[0, 0]</string>
+             </property>
+             <property name="text">
+              <string>[0, 0]</string>
+             </property>
+             <property name="text">
+              <string>[0, 0]</string>
+             </property>
+             <item>
+              <property name="text">
+               <string>X</string>
+              </property>
+              <property name="text">
+               <string>0</string>
+              </property>
+              <property name="text">
+               <string>0</string>
+              </property>
+              <property name="text">
+               <string>0</string>
+              </property>
+              <property name="flags">
+               <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Y</string>
+              </property>
+              <property name="text">
+               <string>0</string>
+              </property>
+              <property name="text">
+               <string>0</string>
+              </property>
+              <property name="text">
+               <string>0</string>
+              </property>
+              <property name="flags">
+               <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
+              </property>
+             </item>
+            </item>
+            <item>
+             <property name="text">
+              <string>字体大小</string>
+             </property>
+             <property name="text">
+              <string>20</string>
+             </property>
+             <property name="text">
+              <string>20</string>
+             </property>
+             <property name="text">
+              <string>20</string>
+             </property>
+             <property name="flags">
+              <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>字体颜色</string>
+             </property>
+             <property name="text">
+              <string>k</string>
+             </property>
+             <property name="text">
+              <string>k</string>
+             </property>
+             <property name="text">
+              <string>k</string>
+             </property>
+             <property name="flags">
+              <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
+             </property>
+            </item>
+           </item>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="layoutWidget">
+       <layout class="QVBoxLayout" name="verticalLayout">
+        <item>
+         <widget class="QPushButton" name="pbloaddata">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>50</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>加载数据</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="pbshowplots">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>50</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>显示绘图</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="pbcloseplots">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>50</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>关闭绘图</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_2">
+          <item>
+           <widget class="QLabel" name="label_2">
+            <property name="text">
+             <string>操作日志</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pbclearlog">
+            <property name="text">
+             <string>清除日志</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="QListWidget" name="listlog">
+          <property name="minimumSize">
+           <size>
+            <width>350</width>
+            <height>400</height>
+           </size>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>11</pointsize>
+           </font>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1000</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menu">
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
+    <property name="title">
+     <string>关于</string>
+    </property>
+    <addaction name="acaboutqt"/>
+    <addaction name="acabout"/>
+   </widget>
+   <widget class="QMenu" name="menu_2">
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
+    <property name="title">
+     <string>文件</string>
+    </property>
+    <addaction name="acopen"/>
+    <addaction name="acsave"/>
+    <addaction name="separator"/>
+    <addaction name="acexit"/>
+   </widget>
+   <addaction name="menu_2"/>
+   <addaction name="menu"/>
+  </widget>
+  <action name="acaboutqt">
+   <property name="text">
+    <string>关于Qt</string>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>11</pointsize>
+    </font>
+   </property>
+  </action>
+  <action name="acabout">
+   <property name="text">
+    <string>关于tplots</string>
+   </property>
+  </action>
+  <action name="acsave">
+   <property name="text">
+    <string>保存</string>
+   </property>
+  </action>
+  <action name="acopen">
+   <property name="text">
+    <string>打开</string>
+   </property>
+  </action>
+  <action name="acexit">
+   <property name="text">
+    <string>退出</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

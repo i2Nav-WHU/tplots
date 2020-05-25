@@ -1,0 +1,8 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=tplots
+Icon=/home/hailiang/Documents/Navigation/tplots/res/tplots.svg
+Exec=python /home/hailiang/Documents/Navigation/tplots/tplots.py
+Categories=Development;
+Terminal=false
