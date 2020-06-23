@@ -207,7 +207,7 @@ class Tplots(QMainWindow):
                                  delimiter=delimiter,
                                  engine='python',
                                  header=None,
-                                 skipfooter=skipfooter)
+                                 skiprows=list(range(skipfooter)))
                 self.plot_data = np.array(df)
             else:
                 self.plot_data = np.fromfile(self.plot_file, dtype=file_type).reshape(-1, columns)
@@ -223,7 +223,7 @@ class Tplots(QMainWindow):
             col = int(self.figure_items['xaxiscol'].text(1))
             for k in range(1, 4):
                 if isxaxiscnt:
-                    self.plot_items['textcoordx'].setText(k, 0)
+                    self.plot_items['textcoordx'].setText(k, '0')
                 else:
                     self.plot_items['textcoordx'].setText(k, str(self.plot_data[0, col]))
 
@@ -463,7 +463,7 @@ class Tplots(QMainWindow):
         self.gui.treeplot.setItemWidget(self.plot_items['markerstyle'], 3, combo)
 
         # 限制输入格式
-        validator = QIntValidator(0, 99)
+        validator = QIntValidator(0, 9999)
         self.gui.editdatacols.setValidator(validator)
 
         # 禁用
