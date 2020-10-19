@@ -299,8 +299,12 @@ class Tplots(QMainWindow):
         if ret == QMessageBox.Save:
             self.save_config()
             event.accept()
+
+            self.close_plots()
         elif ret == QMessageBox.Discard:
             event.accept()
+
+            self.close_plots()
         elif ret == QMessageBox.Cancel:
             event.ignore()
 
