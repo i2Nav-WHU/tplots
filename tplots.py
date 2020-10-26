@@ -227,6 +227,7 @@ class Tplots(QMainWindow):
                 else:
                     self.plot_items['textcoordx'].setText(k, str(self.plot_data[0, col]))
 
+            self.update_group()
             self.isneedreload = False
             return True
         except ValueError:
@@ -308,6 +309,23 @@ class Tplots(QMainWindow):
         elif ret == QMessageBox.Cancel:
             event.ignore()
 
+    def update_group(self):
+        groups = int(self.data_columns / 3)
+
+        combo = QComboBox()
+        for k in range(groups):
+            combo.addItem(str(k))
+        combo.setCurrentIndex(0)
+        self.gui.treeplot.setItemWidget(self.plot_items['group'], 1, combo)
+        self.gui.treeplot.itemWidget(self.plot_items['group'], 1).currentIndexChanged.connect(self.group_changed)
+
+    def group_changed(self):
+        print('changed')
+        index0 = int(self.plot_items['groupindex'].text(1))
+        group = int(self.gui.treeplot.itemWidget(self.plot_items['group'], 1).currentText())
+        for k in range(3):
+            self.plot_items['yindex'].setText(k + 1, str(k + index0 + group * 3))
+
     def figure_option_changed(self, item, column):
         if item == self.figure_items['xaxiscnt'] or item == self.figure_items['xaxiscol']:
             isusecnt = self.figure_items['xaxiscnt'].checkState(1)
@@ -360,54 +378,56 @@ class Tplots(QMainWindow):
         self.figure_items['figure'] = self.gui.treefigure.topLevelItem(0)
         self.figure_items['figsize'] = self.gui.treefigure.topLevelItem(1)
         self.figure_items['xaxis'] = self.gui.treefigure.topLevelItem(2)
-        self.figure_items['xaxiscol'] = self.gui.treefigure.topLevelItem(2).child(0)
-        self.figure_items['xaxiscnt'] = self.gui.treefigure.topLevelItem(2).child(1)
+        self.figure_items['xaxiscol'] = self.figure_items['xaxis'].child(0)
+        self.figure_items['xaxiscnt'] = self.figure_items['xaxis'].child(1)
         self.figure_items['title'] = self.gui.treefigure.topLevelItem(3)
         self.figure_items['xlabel'] = self.gui.treefigure.topLevelItem(4)
         self.figure_items['ylabel'] = self.gui.treefigure.topLevelItem(5)
         self.figure_items['fontsize'] = self.gui.treefigure.topLevelItem(6)
         self.figure_items['grid'] = self.gui.treefigure.topLevelItem(7)
         self.figure_items['legend'] = self.gui.treefigure.topLevelItem(8)
-        self.figure_items['legendall'] = self.gui.treefigure.topLevelItem(8).child(0)
-        self.figure_items['legendmarker'] = self.gui.treefigure.topLevelItem(8).child(1)
-        self.figure_items['legendloc'] = self.gui.treefigure.topLevelItem(8).child(2)
+        self.figure_items['legendall'] = self.figure_items['legend'].child(0)
+        self.figure_items['legendmarker'] = self.figure_items['legend'].child(1)
+        self.figure_items['legendloc'] = self.figure_items['legend'].child(2)
         self.figure_items['passheader'] = self.gui.treefigure.topLevelItem(9)
 
-        self.plot_items['yindex'] = self.gui.treeplot.topLevelItem(0)
-        self.plot_items['legend'] = self.gui.treeplot.topLevelItem(1)
-        self.plot_items['line'] = self.gui.treeplot.topLevelItem(2)
-        self.plot_items['linestyle'] = self.gui.treeplot.topLevelItem(2).child(0)
-        self.plot_items['linewidth'] = self.gui.treeplot.topLevelItem(2).child(1)
-        self.plot_items['islinecolor'] = self.gui.treeplot.topLevelItem(2).child(2)
-        self.plot_items['linecolor'] = self.gui.treeplot.topLevelItem(2).child(2).child(0)
-        self.plot_items['marker'] = self.gui.treeplot.topLevelItem(3)
-        self.plot_items['markerstyle'] = self.gui.treeplot.topLevelItem(3).child(0)
-        self.plot_items['markersize'] = self.gui.treeplot.topLevelItem(3).child(1)
-        self.plot_items['ismarkercolor'] = self.gui.treeplot.topLevelItem(3).child(2)
-        self.plot_items['markercolor'] = self.gui.treeplot.topLevelItem(3).child(2).child(0)
-        self.plot_items['text'] = self.gui.treeplot.topLevelItem(4)
-        self.plot_items['textstr'] = self.gui.treeplot.topLevelItem(4).child(0)
-        self.plot_items['textcoord'] = self.gui.treeplot.topLevelItem(4).child(1)
-        self.plot_items['textcoordx'] = self.gui.treeplot.topLevelItem(4).child(1).child(0)
-        self.plot_items['textcoordy'] = self.gui.treeplot.topLevelItem(4).child(1).child(1)
-        self.plot_items['textsize'] = self.gui.treeplot.topLevelItem(4).child(2)
-        self.plot_items['textcolor'] = self.gui.treeplot.topLevelItem(4).child(3)
+        self.plot_items['group'] = self.gui.treeplot.topLevelItem(0)
+        self.plot_items['groupindex'] = self.plot_items['group'].child(0)
+        self.plot_items['yindex'] = self.gui.treeplot.topLevelItem(1)
+        self.plot_items['legend'] = self.gui.treeplot.topLevelItem(2)
+        self.plot_items['line'] = self.gui.treeplot.topLevelItem(3)
+        self.plot_items['linestyle'] = self.plot_items['line'].child(0)
+        self.plot_items['linewidth'] = self.plot_items['line'].child(1)
+        self.plot_items['islinecolor'] = self.plot_items['line'].child(2)
+        self.plot_items['linecolor'] = self.plot_items['line'].child(2).child(0)
+        self.plot_items['marker'] = self.gui.treeplot.topLevelItem(4)
+        self.plot_items['markerstyle'] = self.plot_items['marker'].child(0)
+        self.plot_items['markersize'] = self.plot_items['marker'].child(1)
+        self.plot_items['ismarkercolor'] = self.plot_items['marker'].child(2)
+        self.plot_items['markercolor'] = self.plot_items['marker'].child(2).child(0)
+        self.plot_items['text'] = self.gui.treeplot.topLevelItem(5)
+        self.plot_items['textstr'] = self.plot_items['text'].child(0)
+        self.plot_items['textcoord'] = self.plot_items['text'].child(1)
+        self.plot_items['textcoordx'] = self.plot_items['text'].child(1).child(0)
+        self.plot_items['textcoordy'] = self.plot_items['text'].child(1).child(1)
+        self.plot_items['textsize'] = self.plot_items['text'].child(2)
+        self.plot_items['textcolor'] = self.plot_items['text'].child(3)
 
         # figure size
         combo = QComboBox()
         combo.addItem('[8, 6]')
         combo.addItem('[10, 7.5]')
         combo.addItem('[12, 9]')
-        combo.setCurrentIndex(1)
+        combo.setCurrentIndex(0)
         self.gui.treefigure.setItemWidget(self.figure_items['figsize'], 1, combo)
 
         # legend location
         combo = QComboBox()
-        combo.addItem('自动')
-        combo.addItem('右上')
-        combo.addItem('左上')
-        combo.addItem('右下')
-        combo.addItem('左下')
+        combo.addItem(u'自动')
+        combo.addItem(u'右上')
+        combo.addItem(u'左上')
+        combo.addItem(u'右下')
+        combo.addItem(u'左下')
         self.gui.treefigure.setItemWidget(self.figure_items['legendloc'], 1, combo)
 
         # line style

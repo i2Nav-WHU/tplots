@@ -388,6 +388,19 @@
            </column>
            <item>
             <property name="text">
+             <string>分组显示</string>
+            </property>
+            <item>
+             <property name="text">
+              <string>初始索引</string>
+             </property>
+             <property name="text">
+              <string>1</string>
+             </property>
+            </item>
+           </item>
+           <item>
+            <property name="text">
              <string>数据列号</string>
             </property>
             <property name="text">
@@ -434,13 +447,13 @@
              <string>添加</string>
             </property>
             <property name="checkState">
-             <enum>Unchecked</enum>
+             <enum>Checked</enum>
             </property>
             <property name="text">
              <string>添加</string>
             </property>
             <property name="checkState">
-             <enum>Unchecked</enum>
+             <enum>Checked</enum>
             </property>
             <item>
              <property name="text">
@@ -801,7 +814,7 @@
      <x>0</x>
      <y>0</y>
      <width>1000</width>
-     <height>30</height>
+     <height>29</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu">
