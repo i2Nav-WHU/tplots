@@ -126,6 +126,7 @@ class Ui_MainWindow(object):
         self.treeplot.setObjectName("treeplot")
         item_0 = QtWidgets.QTreeWidgetItem(self.treeplot)
         item_1 = QtWidgets.QTreeWidgetItem(item_0)
+        item_1.setFlags(QtCore.Qt.ItemIsSelectable|QtCore.Qt.ItemIsEditable|QtCore.Qt.ItemIsDragEnabled|QtCore.Qt.ItemIsUserCheckable|QtCore.Qt.ItemIsEnabled)
         item_0 = QtWidgets.QTreeWidgetItem(self.treeplot)
         item_0.setFlags(QtCore.Qt.ItemIsSelectable|QtCore.Qt.ItemIsEditable|QtCore.Qt.ItemIsDragEnabled|QtCore.Qt.ItemIsDropEnabled|QtCore.Qt.ItemIsUserCheckable|QtCore.Qt.ItemIsEnabled)
         item_0 = QtWidgets.QTreeWidgetItem(self.treeplot)

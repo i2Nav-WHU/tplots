@@ -397,6 +397,9 @@
              <property name="text">
               <string>1</string>
              </property>
+             <property name="flags">
+              <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsUserCheckable|ItemIsEnabled</set>
+             </property>
             </item>
            </item>
            <item>

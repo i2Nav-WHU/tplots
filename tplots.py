@@ -268,7 +268,7 @@ class Tplots(QMainWindow):
                           'A novel GUI plot tool'
                           '</p>'
                           '<body style="font-size:12pt;">'
-                          '<p style="font-weight:bold">Version: 1.1</p>'
+                          '<p style="font-weight:bold">Version: 1.2</p>'
                           '<p>'
                           '<div style="font-weight:bold">Development:</div>'
                           '<div>'
@@ -317,10 +317,11 @@ class Tplots(QMainWindow):
             combo.addItem(str(k))
         combo.setCurrentIndex(0)
         self.gui.treeplot.setItemWidget(self.plot_items['group'], 1, combo)
-        self.gui.treeplot.itemWidget(self.plot_items['group'], 1).currentIndexChanged.connect(self.group_changed)
+        self.gui.treeplot.itemWidget(self.plot_items['group'], 1).activated.connect(self.group_activated)
 
-    def group_changed(self):
-        print('changed')
+        self.group_activated(self.gui.treeplot.itemWidget(self.plot_items['group'], 1).currentIndex())
+
+    def group_activated(self, index):
         index0 = int(self.plot_items['groupindex'].text(1))
         group = int(self.gui.treeplot.itemWidget(self.plot_items['group'], 1).currentText())
         for k in range(3):
@@ -353,6 +354,8 @@ class Tplots(QMainWindow):
             y = float(self.plot_items['textcoordy'].text(column))
             text = '[%g, %g]' % (x, y)
             self.plot_items['textcoord'].setText(column, text)
+        elif item == self.plot_items['groupindex']:
+            self.group_activated(self.gui.treeplot.itemWidget(self.plot_items['group'], 1).currentIndex())
 
     def set_signal(self):
         self.gui.acexit.triggered.connect(self.close)
