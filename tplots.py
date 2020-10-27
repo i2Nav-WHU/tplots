@@ -312,14 +312,20 @@ class Tplots(QMainWindow):
     def update_group(self):
         groups = int(self.data_columns / 3)
 
+        index = 0
+        if self.gui.treeplot.itemWidget(self.plot_items['group'], 1) is not None:
+            index = self.gui.treeplot.itemWidget(self.plot_items['group'], 1).currentIndex()
+            if index >= groups:
+                index = 0
+
         combo = QComboBox()
         for k in range(groups):
             combo.addItem(str(k))
-        combo.setCurrentIndex(0)
+        combo.setCurrentIndex(index)
         self.gui.treeplot.setItemWidget(self.plot_items['group'], 1, combo)
         self.gui.treeplot.itemWidget(self.plot_items['group'], 1).activated.connect(self.group_activated)
 
-        self.group_activated(self.gui.treeplot.itemWidget(self.plot_items['group'], 1).currentIndex())
+        self.group_activated(index)
 
     def group_activated(self, index):
         index0 = int(self.plot_items['groupindex'].text(1))
