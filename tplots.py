@@ -238,7 +238,8 @@ class Tplots(QMainWindow):
 
     def import_file(self):
         filename, suffix = QFileDialog.getOpenFileName()
-        self.gui.editdatafile.setText(filename)
+        if filename != '':
+            self.gui.editdatafile.setText(filename)
 
     def update_file_state(self):
         self.plot_file = self.gui.editdatafile.text()
