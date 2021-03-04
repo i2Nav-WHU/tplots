@@ -2,11 +2,11 @@
 
 ## **A novel GUI plot tool**
 
-<img src="./screenshots/tplots.png" style="zoom:80%;"/>
+<img src="./screenshots/tplots.png" style="zoom: 67%;"/>
 
 **tplots**是一个交互式绘图工具，使用Python语言编写。tplots使用`PyQt5`作为前端交互GUI，使用`matplotlib`绘图显示，绘图使用PyQt5为后端。
 
-**Author**: hailiang (thl@whu.edu.cn), ruonan (grn213331@163.com)
+**Author**: hailiang (thl@whu.edu.cn), linfeng (linfeng_bao@outlook.com), ruonan (grn213331@163.com)
 
 ## **1 Features**
 
@@ -75,16 +75,14 @@ tplots中的文本支持`latex`数学公式，使用`$`作为渲染识别符号�
 
 同时勾选曲线和标记，可以绘制优美的图形。
 
-<img src="./screenshots/lines_with_markers.png" align=left width=600/>
+<img src="./screenshots/lines_with_markers.png" style="zoom: 50%;" />
 
 ### **3.5 Multi figures**
 
 只需修改`窗口名称`，即可实现多窗口绘图。
 
-<img src="./screenshots/multi_figures.png"  />
+<img src="./screenshots/multi_figures.png" style="zoom: 67%;" />
 
 ## **4 Acknowledge**
 
-- tplots开放源代码，运行tplots意味着您知晓可能造成的损失。对于造成的任何数据或者设备的损失，本软件的作者们不负有任何责任。
-
-- 如果您觉得tplots对您的学术研究很有帮助，您可以在发表学术研究成果时适当的表示感谢，我们尊重您的选择。
+如果您觉得tplots对您的学术研究很有帮助，您可以在发表学术研究成果时适当的表示感谢，我们尊重您的选择。
