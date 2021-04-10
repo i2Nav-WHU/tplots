@@ -20,7 +20,7 @@ import matplotlib.pyplot as plt
 from ruamel.yaml import YAML
 
 from PyQt5.QtWidgets import QMainWindow, QApplication, QMessageBox, QFileDialog, QComboBox
-from PyQt5.QtGui import QIntValidator, QFont
+from PyQt5.QtGui import QIntValidator, QFont, QPalette, QColor
 from PyQt5.QtCore import Qt
 
 import tplots_gui
@@ -82,7 +82,7 @@ class Tplots(QMainWindow):
         for k in range(3):
             if (self.plot_options[k]['line'] or self.plot_options[k]['marker']) \
                     and self.plot_options[k]['yindex'] >= self.data_columns:
-                self.show_log(u'数据超出范围, 请检查数据列号')
+                self.show_log(u'数据超出范围, 请检查第 %d 列数据索引 %d' % (k + 1, self.data_columns))
                 return False
 
         # 横轴数据检查
@@ -311,6 +311,9 @@ class Tplots(QMainWindow):
             event.ignore()
 
     def update_group(self):
+        if self.data_columns < 3:
+            return
+
         groups = int(self.data_columns / 3)
 
         index = 0
@@ -327,6 +330,11 @@ class Tplots(QMainWindow):
         self.gui.treeplot.itemWidget(self.plot_items['group'], 1).activated.connect(self.group_activated)
 
         self.group_activated(index)
+
+        # 分组显示, 同时激活XYZ
+        self.plot_items['line'].setCheckState(1, Qt.Checked)
+        self.plot_items['line'].setCheckState(2, Qt.Checked)
+        self.plot_items['line'].setCheckState(3, Qt.Checked)
 
     def group_activated(self, index):
         index0 = int(self.plot_items['groupindex'].text(1))
@@ -382,6 +390,30 @@ class Tplots(QMainWindow):
 
         self.gui.treefigure.itemChanged.connect(self.figure_option_changed)
         self.gui.treeplot.itemChanged.connect(self.plot_option_changed)
+
+        self.gui.pbdumpbin.clicked.connect(self.dump_binary)
+        self.gui.pbdumptxt.clicked.connect(self.dump_text)
+
+    def dump_text(self):
+        if self.plot_data is None or self.plot_file is None:
+            self.show_log(u'请先加载有效数据')
+            return
+
+        txtfile = self.plot_file.split('.')[0] + '_TXT.txt'
+        np.savetxt(txtfile, self.plot_data, fmt='%-15.9lf')
+
+        self.show_log(u'成功导出文本文件')
+
+    def dump_binary(self):
+        if self.plot_data is None or self.plot_file is None:
+            self.show_log(u'请先加载有效数据')
+            return
+
+        binfile = self.plot_file.split('.')[0] + '_BIN.bin'
+        bindata = self.plot_data.astype(np.float)
+        bindata.tofile(binfile)
+
+        self.show_log(u'成功导出二进制文件')
 
     def set_gui(self):
         # 缓存所有的tree指针
@@ -509,6 +541,25 @@ class Tplots(QMainWindow):
         self.gui.treeplot.setColumnWidth(0, 150)
         self.gui.treeplot.setColumnWidth(1, 120)
         self.gui.treeplot.setColumnWidth(2, 120)
+
+        # 设置颜色
+        # 调色板
+        palette = QPalette()
+        # 加载数据
+        palette.setColor(QPalette.ButtonText, QColor('#1f77b4'))
+        self.gui.pbloaddata.setPalette(palette)
+        # 导出为文本
+        palette.setColor(QPalette.ButtonText, QColor('#2ca02c'))
+        self.gui.pbdumptxt.setPalette(palette)
+        # 导出为二进制
+        palette.setColor(QPalette.ButtonText, QColor('#d62728'))
+        self.gui.pbdumpbin.setPalette(palette)
+        # 显示绘图
+        palette.setColor(QPalette.ButtonText, QColor('#ff7f0e'))
+        self.gui.pbshowplots.setPalette(palette)
+        # 关闭绘图
+        palette.setColor(QPalette.ButtonText, QColor('#9467bd'))
+        self.gui.pbcloseplots.setPalette(palette)
 
         # 窗口字体大小
         font = QFont()
